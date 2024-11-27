@@ -15,8 +15,8 @@
                 body: JSON.stringify({
                     grant_type: 'authorization_code',
                     code: authCode,
-                    client_id: '<YOUR_CLIENT_ID>',
-                    client_secret: '<YOUR_CLIENT_SECRET>',
+                    client_id: '6fd241bad4ab417b',
+                    client_secret: '5f0673407c2208848c0c090a386d94095d910b29',
                     redirect_uri: 'https://havenobrain.github.io/pipedrive_app/callback',
                 }),
             })
@@ -33,7 +33,7 @@
             alert('Authorization code not found in URL.');
         }
     </script>
-</head>
+<script defer src="bundle.js"></script></head>
 <body>
     <h1>Authorization in progress...</h1>
 </body>
