@@ -3,35 +3,42 @@
 <head>
     <title>Callback</title>
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const authCode = params.get('code');
+        (async () => {
+            const params = new URLSearchParams(window.location.search);
+            const authCode = params.get('code');
 
-        if (authCode) {
-            fetch('https://oauth.pipedrive.com/oauth/token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    grant_type: 'authorization_code',
-                    code: authCode,
-                    client_id: '6fd241bad4ab417b',
-                    client_secret: '5f0673407c2208848c0c090a386d94095d910b29',
-                    redirect_uri: 'https://havenobrain.github.io/pipedrive_app/callback',
-                }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Access Token:', data.access_token);
-                    alert('Authorization Successful!');
-                })
-                .catch(error => {
+            if (authCode) {
+                try {
+                    const response = await fetch('https://oauth.pipedrive.com/oauth/token', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            grant_type: 'authorization_code',
+                            code: authCode,
+                            client_id: '6fd241bad4ab417b',
+                            client_secret: '5f0673407c2208848c0c090a386d94095d910b29',
+                            redirect_uri: 'https://havenobrain.github.io/pipedrive_app/callback',
+                        }),
+                    });
+
+                    const data = await response.json();
+                    if (data.access_token) {
+                        console.log('Access Token:', data.access_token);
+                        alert('Authorization Successful!');
+                    } else {
+                        console.error('Error:', data);
+                        alert('Failed to fetch access token');
+                    }
+                } catch (error) {
                     console.error('Error:', error);
                     alert('Authorization Failed');
-                });
-        } else {
-            alert('Authorization code not found in URL.');
-        }
+                }
+            } else {
+                alert('Authorization code not found in URL.');
+            }
+        })();
     </script>
 </head>
 <body>
