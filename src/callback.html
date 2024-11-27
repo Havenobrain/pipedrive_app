@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Callback</title>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const authCode = params.get('code');
+
+        if (authCode) {
+            fetch('https://oauth.pipedrive.com/oauth/token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    grant_type: 'authorization_code',
+                    code: authCode,
+                    client_id: '<YOUR_CLIENT_ID>',
+                    client_secret: '<YOUR_CLIENT_SECRET>',
+                    redirect_uri: 'https://havenobrain.github.io/pipedrive_app/callback',
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Access Token:', data.access_token);
+                    alert('Authorization Successful!');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Authorization Failed');
+                });
+        } else {
+            alert('Authorization code not found in URL.');
+        }
+    </script>
+</head>
+<body>
+    <h1>Authorization in progress...</h1>
+</body>
+</html>
