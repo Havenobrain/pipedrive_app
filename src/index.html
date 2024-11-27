@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipedrive Task</title>
+</head>
+<body>
+    <div id="app">
+        <h2>Create a Job</h2>
+        <form id="job-form">
+            <fieldset>
+                <legend>Client Details</legend>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <label for="first-name" style="flex: 1; min-width: 200px;">
+                        First Name:
+                        <input type="text" id="first-name" name="first-name" required>
+                    </label>
+                    <label for="last-name" style="flex: 1; min-width: 200px;">
+                        Last Name:
+                        <input type="text" id="last-name" name="last-name" required>
+                    </label>
+                </div>
+                <label for="phone">
+                    Phone:
+                    <input type="tel" id="phone" name="phone" required>
+                </label>
+                <label for="email">
+                    Email:
+                    <input type="email" id="email" name="email">
+                </label>
+            </fieldset>
+    
+            <fieldset>
+                <legend>Job Details</legend>
+                <label for="job-type">
+                    Job Type:
+                    <select id="job-type" name="job-type" required>
+                        <option value="installation">Installation</option>
+                        <option value="repair">Repair</option>
+                    </select>
+                </label>
+                <label for="job-source">
+                    Job Source:
+                    <input type="text" id="job-source" name="job-source" required>
+                </label>
+                <label for="description">
+                    Description:
+                    <textarea id="description" name="description"></textarea>
+                </label>
+            </fieldset>
+    
+            <fieldset>
+                <legend>Service Location</legend>
+                <label for="address">
+                    Address:
+                    <input type="text" id="address" name="address" required>
+                </label>
+                <label for="city">
+                    City:
+                    <input type="text" id="city" name="city" required>
+                </label>
+                <label for="state">
+                    State:
+                    <input type="text" id="state" name="state" required>
+                </label>
+                <label for="zip-code">
+                    Zip Code:
+                    <input type="text" id="zip-code" name="zip-code" required>
+                </label>
+            </fieldset>
+    
+            <fieldset>
+                <legend>Scheduled</legend>
+                <label for="start-date">
+                    Start Date:
+                    <input type="date" id="start-date" name="start-date" required>
+                </label>
+                <label for="start-time">
+                    Start Time:
+                    <input type="time" id="start-time" name="start-time" required>
+                </label>
+                <label for="end-time">
+                    End Time:
+                    <input type="time" id="end-time" name="end-time" required>
+                </label>
+            </fieldset>
+    
+            <button type="submit">Create Job</button>
+        </form>
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modal-message"></p>
+            <button id="view-deal" class="hidden">View Deal</button>
+            <button id="close-modal">Close</button>
+        </div>
+    </div>
+
+    <script src="./bundle.js"></script>
+</body>
+</html>
